@@ -8,15 +8,15 @@
 </head>
 <body>
     <h1>Submit a Form</h1>
-    <form>
-       <label>Name:</label> <input id="Name" type="text"  required>
-       <label>Email:</label> <input id="Email" type="text" required>
-       <label>Password:</label> <input id="Password" type="text" required>
+    <form id="form">
+       <label>Name:</label> <input id="Name" required>
+       <label>Email:</label> <input id="Email" required>
+       <label>Password:</label> <input id="Password" required>
        <label id="occupationLabel">Occupation:</label> 
        <select id="occupationId" required></select>
-       <label>State:</label> 
+       <label id="stateLabel">State:</label> 
        <select id="stateId" required></select>
-       <button id="btn">Submit</button>
+       <button id="btn" type="submit">Submit</button>
     </form>
     <script src="code.js"></script>
 </body>
