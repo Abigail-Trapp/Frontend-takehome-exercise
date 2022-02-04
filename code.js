@@ -27,31 +27,31 @@ function getEndpoints(myURL) {
 
 getEndpoints(Url)
 
-
-function submitForm(){
+    let nameInput = document.getElementById("Name").value; 
+    let emailInput = document.getElementById("Email").value ;
+    let passwordInput = document.getElementById("Password").value ;
+    let occupationId = document.getElementById("occupationId").value;
+    let stateId = document.getElementById("stateId").value;
 
     let btn = document.getElementById("btn")
 
+function submitForm(){
+
 btn.addEventListener("click", function(event){
     event.preventDefault()
-    
-    let nameInput = document.getElementById("Name").value; 
-    let email = document.getElementById("Email").value ;
-    let password = document.getElementById("Password").value ;
-    let occupationId = document.getElementById("occupationId").value;
-    let stateId = document.getElementById("stateId").value;
-    
 let data = {
     "name" : `${nameInput}`,
-    "email": `${email}`,
-    "password": `${password}`,
+    "email": `${emailInput}`,
+    "password": `${passwordInput}`,
     "occupation": `${occupationId}`,
     "state": `${stateId}`
 }
-
+if((nameInput !== ' ') && (emailInput !== ' ') && (password !== ' ')
+ && (occupationId !== ' ') && (stateId !== ' ')){
+}
 fetch(Url,{
     method: "post",
-    headers: {"Content-type": "application/json"},
+    headers: {"Content_type": "application/json"},
     body: JSON.stringify(data)
 })
     .then(response => response.text().then(console.log))
