@@ -1,65 +1,74 @@
 
 const Url = 'https://frontend-take-home.fetchrewards.com/form'
-const Http = new XMLHttpRequest()
 
-function getEndpoints(myURL) {
-    Http.open("GET", myURL)
-    Http.send()
-    fetch(myURL)
+let stateList = document.createElement("option")
+let occupationList = document.createElement("option")
+
+let userName = document.getElementById("userName")
+let userEmail = document.getElementById("userEmail")
+let userPassword = document.getElementById("userPassword")
+let occupationId = document.getElementById("occupationId")
+let stateId = document.getElementById("stateId")
+
+let btn = document.getElementById("btn")
+
+function submitForm(myUrl){
+    fetch(myUrl)
         .then(response => { return response.json() })
         .then(data => {
             for (let i of data.occupations) {
-                let occupationId = document.getElementById("occupationId")
-                let occupationList = document.createElement("option")
+
                 occupationList.text = `${i}`
                 occupationId.append(occupationList)
             }
-                for(let j of data.states){
-                    let stateId = document.getElementById("stateId")
-                    let stateList = document.createElement("option")
-                    stateList.text = `${j.abbreviation}`
-                    stateId.append(stateList)
-                   
+            for (let j of data.states) {
+
+                stateList.text = `${j.abbreviation}`
+                stateId.append(stateList)
+
+            }
+            btn.addEventListener("click", function (event) {
+                event.preventDefault()
+                let data = {
+                    "name": `${userName.value}`,
+                    "email": `${userEmail.value}`,
+                    "password": `${userPassword.value}`,
+                    "occupation": `${occupationId.value}`,
+                    "state": `${stateId.value}`
                 }
+    
+        if ((userName.value !== '') && (userEmail.value !== '') && (userPassword.value !== '')
+                && (occupationId.value !== '') && (stateId.value !== ''))
+                {
+                //     alert("Please fill out all forms!")
+                // } 
+                fetch(Url, {
+                    method: "post",
+                    headers: { "Content-type": "application/json" },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.text().then(console.log))
+    
+                    .catch(err => console.log(err))
+                } else{
+                    alert("Please fill out all forms!")
+                }
+            })
+        
 
         })
-}
 
-getEndpoints(Url)
+    }
+submitForm(Url)             
+  
 
-    let nameInput = document.getElementById("Name").value; 
-    let emailInput = document.getElementById("Email").value ;
-    let passwordInput = document.getElementById("Password").value ;
-    let occupationId = document.getElementById("occupationId").value;
-    let stateId = document.getElementById("stateId").value;
 
-    let btn = document.getElementById("btn")
 
-function submitForm(){
 
-btn.addEventListener("click", function(event){
-    event.preventDefault()
-let data = {
-    "name" : `${nameInput}`,
-    "email": `${emailInput}`,
-    "password": `${passwordInput}`,
-    "occupation": `${occupationId}`,
-    "state": `${stateId}`
-}
-if((nameInput !== ' ') && (emailInput !== ' ') && (password !== ' ')
- && (occupationId !== ' ') && (stateId !== ' ')){
-}
-fetch(Url,{
-    method: "post",
-    headers: {"Content_type": "application/json"},
-    body: JSON.stringify(data)
-})
-    .then(response => response.text().then(console.log))
-    // .then(json => console.log(json))
-    .catch(err => console.log(err))
-})
 
-}
+
+
+
 
 
 
