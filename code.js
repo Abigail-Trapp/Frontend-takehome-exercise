@@ -40,8 +40,6 @@ function submitForm(myUrl){
         if ((userName.value !== '') && (userEmail.value !== '') && (userPassword.value !== '')
                 && (occupationId.value !== '') && (stateId.value !== ''))
                 {
-                //     alert("Please fill out all forms!")
-                // } 
                 fetch(Url, {
                     method: "post",
                     headers: { "Content-type": "application/json" },
@@ -50,7 +48,8 @@ function submitForm(myUrl){
                     .then(response => response.text().then(console.log))
     
                     .catch(err => console.log(err))
-                } else{
+                } 
+                else{
                     alert("Please fill out all forms!")
                 }
             })

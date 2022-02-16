@@ -8,17 +8,19 @@
     <title>Front End Take Home Exercise</title>
 </head>
 <body>
+    <div>
     <h1>Submit a Form</h1>
     <form id="form">
-       <label>Name:</label> <input id="userName">
-       <label>Email:</label> <input id="userEmail">
-       <label>Password:</label> <input id="userPassword">
+       <label>Name:</label> <input id="userName" required>
+       <label>Email:</label> <input id="userEmail" required>
+       <label>Password:</label> <input id="userPassword" required>
        <label id="occupationLabel">Occupation:</label> 
-       <select id="occupationId"></select>
+       <select id="occupationId" required></select>
        <label id="stateLabel">State:</label> 
-       <select id="stateId"></select>
+       <select id="stateId" required></select>
        <button id="btn" type="submit">Submit</button>
     </form>
+</div>
     <script src="code.js"></script>
 </body>
 </html>
